@@ -15,12 +15,13 @@ def resumen():
     # Obtener la API Key desde variable de entorno
     api_key = os.environ.get("NEWSAPI_KEY")
 
-    # --- CAMBIO APLICADO: Filtro por idioma español (es) y país Argentina (ar) ---
-    url = f"https://newsapi.org/v2/everything?q=politica+economia&from={fecha_inicio}&sortBy=publishedAt&apiKey={api_key}&language=es&country=ar"
+    # --- URL MODIFICADA: Usa solo idioma español general (es) ---
+    # Esto es menos restrictivo que usar "country=ar"
+    url = f"newsapi.org{fecha_inicio}&sortBy=publishedAt&apiKey={api_key}&language=es"
     
     resp = requests.get(url).json()
 
-    # --- CAMBIO APLICADO: Deduplicación y manejo de enlaces ---
+    # --- Deduplicación y manejo de enlaces ---
     titulos_unicos = set()
     articulos_filtrados = []
 
@@ -36,8 +37,8 @@ def resumen():
         if len(articulos_filtrados) >= 10:
             break
 
-    # --- CAMBIO APLICADO: Renderizado HTML con enlaces <a> ---
-    html = "<h1>Resumen semanal de política y economía (Argentina)</h1><ul>"
+    # --- Renderizado HTML con enlaces <a> ---
+    html = "<h1>Resumen semanal de política y economía (Español)</h1><ul>"
     for art in articulos_filtrados:
         # Usamos f-string para crear un enlace HTML que el usuario puede clickear
         html += f"<li><a href='{art['url']}' target='_blank'>{art['title']}</a></li>"
