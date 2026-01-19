@@ -27,7 +27,8 @@ def resumen():
     <html>
     <head>
         <meta charset="utf-8">
-        <title>Resumen semanal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Resumen semanal · Ernesto Ireneo Lora</title>
         <link rel="icon" href="{url_for('static', filename='Favicon.ico')}" type="image/x-icon" />
         <style>
             body {{
